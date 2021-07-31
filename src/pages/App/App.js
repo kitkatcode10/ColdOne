@@ -1,11 +1,17 @@
 import React, { Component } from "react"; 
-import logo from './logo.svg';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import SignupPage from "../SignupPage/SignupPage";
-import { render } from "@testing-library/react";
+import HomePage from '../../pages/HomePage/HomePage'; 
+import LoginPage from '../LoginPage/LoginPage'; 
 
 
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {...this.getInitialState()}
+  }
+}
 render() {
   return (
     <div className="App">
@@ -33,7 +39,7 @@ export default App;
 
 //        render() {
 //          <SignupPage/> 
-//        } */}
+//        } */
        
 //         <a
 //           className="App-link"
