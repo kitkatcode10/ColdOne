@@ -1,3 +1,5 @@
+// import tokenService from "./tokeService";
+
 const BASE_URL = '/api/users/'; 
 
 function signup(user) {
@@ -16,3 +18,6 @@ function signup(user) {
 export default {
     signup
 }; 
+
+// token lesson > getting function get user , login function, log out function, import the token service + payload stuff
+// token service will be in controller folder it needs it to compare passwords, if password entered is correct - >!!! go througuh lesson wohoooooooOOOOooOoOO 
