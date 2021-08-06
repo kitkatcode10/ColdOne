@@ -23,6 +23,8 @@ class SignupForm extends Component {
         try {
             await userService.signup(this.state); 
             // if successfully signed up show the homepage
+            this.props.handleSignupOrLogin() 
+            
             this.props.history.push('/');
         } catch (err) {
             // for invalid user data such as a duplicate email 

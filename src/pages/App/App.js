@@ -1,6 +1,6 @@
 import React, { Component } from "react"; 
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import SignupPage from "../SignupPage/SignupPage";
 import NavBar from "../../components/NavBar/NavBar"; 
 import HomePage from '../HomePage/HomePage'; 
@@ -11,12 +11,32 @@ import userService from '../../utils/userService';
 class App extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      ...this.getInitialState(),
+      user: userService.getUser() 
+    };
   }
+
+  getInitialState() {
+    return {
+
+    };
+  }
+
+    handleLogout = () => {
+      userService.logout();
+      this.setState({user: null})
+    }
+
+    handleSignupOrLogin = () =>{
+      this.setState({user: userService.getUser()}); 
+    }
+
+
 render() {
   return (
     <div className="App">
-      <header className="App-header"> <NavBar/> <p>Here, have a Cold One Bud! </p></header>
+      <header className="App-header"> <p>Here, have a Cold One Bud! 🍺 </p></header>
       <Switch> 
         <Route exact path='/signup' render={({ history }) =>   
         <SignupPage
@@ -31,6 +51,13 @@ render() {
       <HomePage
         />
       }/>
+      <Route exact path='/mybeers' render={() => (
+        userService.getUser() ?
+        <HomePage /> 
+          :
+        <Redirect to='/login' />
+      )}/>
+
       </Switch>
       </div>
     );

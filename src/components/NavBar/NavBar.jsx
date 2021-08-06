@@ -2,31 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 
-const NavBar = ({user, handleLogout}) => {
-  if(user){
-    return (
-        <div className="Navbar">
-          <div>
-            {/* <Link to='/mybeers' className='NavBar-link'>MY BEERS</Link>
-            &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; */}
-            <Link to='' className='NavBar-link' onClick={handleLogout}>LOG OUT</Link>
-            &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <span className='NavBar-welcome'>WELCOME, {user.name}</span>
-          </div>
-        </div>
-
-    )
-  }
-
-  return (
-    <div className='NavBar'>
+const NavBar = (props) => {
+    let nav = props.user ?
       <div>
-        <Link to="/login" className='NavBar-link'>LOG IN</Link>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="/signup" className='NavBar-link'>SIGN UP</Link>
+        <Link to='/mybeers' className='NavBar-link'>MY BEERS</Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        <Link to='' className='NavBar-link'onClick={props.handleLogout} >LOG OUT</Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        <span className='NavBar-welcome'>WELCOME, {props.user.name}</span>
       </div>
-    </div>
-  );
-};
+      :
+      <div>
+        <Link to='/login' className='NavBar-link'>LOG IN</Link>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to='/signup' className='NavBar-link'>SIGN UP</Link>
+      </div>;
+  
+    return (
+      <div className='NavBar'>
+        {nav}
+      </div>
+    );
+  };
 
 export default NavBar;

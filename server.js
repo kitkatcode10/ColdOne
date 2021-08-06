@@ -23,6 +23,10 @@ if(process.env.NODE_ENV === 'production'){
   }
 
 // Put API routes here, before the "catch all" route
+app.use('/api/users', require('./routes/api/users'));
+
+app.use(require('./config/auth'));
+app.use('/api/beers', require('./routes/api/beers'));
 
 // The following "catch all" route (note the *)is necessary
 // for a SPA's client-side routing to properly work

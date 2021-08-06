@@ -14,26 +14,23 @@ class LoginPage extends Component {
 
   handleChange = (e) => {
     // TODO: implement in an elegant way
-    const name = e.target.name;
-    const value = e.target.value;
-
-    this.setState({ [name]: value });
+    this.setState({
+    [e.target.name]: e.target.value
+    }); 
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await userService.login(this.state)
+        await userService.login(this.state); 
 
-        // after token in storage, tell react to refetch user from token
-        this.props.handleSignupOrLogin()
-
-        this.props.history.push('/')
-    } catch (error) {
-      // Use a modal or toast in your apps instead of alert
-      alert('Invalid Credentials!');
+        this.props.handleSignupOrLogin() 
+        
+        this.props.history.push('/');
+    } catch (err) {
+        alert('Invalid Credentials!'); 
     }
-  }
+}
 
   render() {
     return (

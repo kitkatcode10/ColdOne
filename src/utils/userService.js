@@ -1,4 +1,5 @@
-// import tokenService from "./tokeService";
+import { getQueriesForElement } from '@testing-library/react';
+import tokenService from './tokenService'; 
 
 const BASE_URL = '/api/users/'; 
 
@@ -12,12 +13,37 @@ function signup(user) {
         if (res.ok) return res.json(); 
         throw new Error('Email already in use'); 
     })
-    .then(data => data); 
+    .then(({ token }) => {
+        tokenService.setToken(token); 
+    }); 
+}
+
+function getUser() {
+    return tokenService.getUserFromToken(); 
+}
+
+function login(creds) {
+    return fetch(BASE_URL + 'login', {
+        method: 'POST',
+        headers: new Headers({'Content-Type': 'application/json'}),
+        body: JSON.stringify(creds)
+    })
+    .then(res => {
+        if (res.ok) return res.json(); 
+        throw new Error('Bad Credentials!');
+    })
+    .then(({token}) => tokenService.setToken(token)); 
+}
+
+function logout() {
+    tokenService.removeToken(); 
 }
 
 export default {
-    signup
+    signup,
+    getUser,
+    logout,
+    login 
 }; 
 
-// token lesson > getting function get user , login function, log out function, import the token service + payload stuff
 // token service will be in controller folder it needs it to compare passwords, if password entered is correct - >!!! go througuh lesson wohoooooooOOOOooOoOO 
