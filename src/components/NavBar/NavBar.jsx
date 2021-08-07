@@ -7,7 +7,7 @@ const NavBar = ({user, handleLogout}) => {
     return (
         <div className="Navbar">
           <div>
-            <Link to='/' onClick={props.handleBeerForm}>Add Beers</Link>
+            {/* <Link to='/' onClick={handleBeerForm}>Add Beers</Link> */}
             <Link to='' className='NavBar-link' onClick={handleLogout}>LOG OUT</Link>
             &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
             <span className='NavBar-welcome'>WELCOME, {user.name}</span>
