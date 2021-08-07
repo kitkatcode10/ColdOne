@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SignupForm from '../../components/SignupForm/SignupForm';
 import './SignupPage.css';
+import image from './Brewskis.jpg'
 
 class SignupPage extends Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class SignupPage extends Component {
       <div className='SignupPage'>
         <SignupForm {...this.props} updateMessage={this.updateMessage} />
         <p>{this.state.message}</p>
+     
+      <img src={image} width='100%'/>
       </div>
     );
   }
