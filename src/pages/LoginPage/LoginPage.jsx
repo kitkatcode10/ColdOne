@@ -13,24 +13,27 @@ class LoginPage extends Component {
   };
 
   handleChange = (e) => {
-    // TODO: implement in an elegant way
-    this.setState({
-    [e.target.name]: e.target.value
-    }); 
+   
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState({ [name]: value });
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await userService.login(this.state); 
+      await userService.login(this.state)
 
-        this.props.handleSignupOrLogin() 
-        
-        this.props.history.push('/');
-    } catch (err) {
-        alert('Invalid Credentials!'); 
+       
+        this.props.handleSignupOrLogin()
+
+        this.props.history.push('/')
+    } catch (error) {
+      
+      alert('Invalid Credentials!');
     }
-}
+  }
 
   render() {
     return (

@@ -1,49 +1,54 @@
-import { getQueriesForElement } from '@testing-library/react';
-import tokenService from './tokenService'; 
+import tokenService from "./tokenService";
 
-const BASE_URL = '/api/users/'; 
+const BASE_URL = '/api/users/';
 
 function signup(user) {
-    return fetch(BASE_URL + 'signup', {
-        method: 'POST',
-        headers: new Headers({'Content-Type': 'application/json'}),
-        body: JSON.stringify(user)
-    })
-    .then(res => {
-        if (res.ok) return res.json(); 
-        throw new Error('Email already in use'); 
-    })
-    .then(({ token }) => {
-        tokenService.setToken(token); 
-    }); 
+  return fetch(BASE_URL + 'signup', {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json'}),
+    body: JSON.stringify(user)
+  })
+  .then(res => {
+    if (res.ok) return res.json();
+    // Probably a duplicate email
+    throw new Error('Email already taken!');
+  })
+  .then(({token}) => {
+    tokenService.setToken(token)
+  });
 }
 
 function getUser() {
-    return tokenService.getUserFromToken(); 
+  return tokenService.getUserFromToken();
 }
 
-function login(creds) {
-    return fetch(BASE_URL + 'login', {
-        method: 'POST',
-        headers: new Headers({'Content-Type': 'application/json'}),
-        body: JSON.stringify(creds)
-    })
-    .then(res => {
-        if (res.ok) return res.json(); 
-        throw new Error('Bad Credentials!');
-    })
-    .then(({token}) => tokenService.setToken(token)); 
+function logout(){
+  localStorage.removeItem('token')
 }
 
-function logout() {
-    tokenService.removeToken(); 
+async function login(creds){
+
+  const options = {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json'}),
+    body: JSON.stringify(creds)
+  }
+
+  const data = await fetch(`${BASE_URL}login`, options)
+
+  let res;
+
+  if(data.ok){
+    res = await data.json()
+    return tokenService.setToken(res.token)
+  }
+
+  throw new Error('Bad Credentials')
 }
 
 export default {
-    signup,
-    getUser,
-    logout,
-    login 
-}; 
-
-// token service will be in controller folder it needs it to compare passwords, if password entered is correct - >!!! go througuh lesson wohoooooooOOOOooOoOO 
+  signup,
+  getUser,
+  logout,
+  login
+};
