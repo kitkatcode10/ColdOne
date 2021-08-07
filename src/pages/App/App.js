@@ -14,7 +14,10 @@ class App extends Component {
     super();
     this.state = {
       user: userService.getUser(), 
+      name: "",
       brewery: "",
+      location: "", 
+      alcoholContent: "", 
       myRating: "", 
     };
   }
@@ -38,7 +41,8 @@ render() {
         user={this.state.user}
         handleLogout={this.handleLogout} 
         />
-        <p>Here, have a Cold One Bud! 🍺 </p></header>
+        <p>Here, have a Cold One Bud! 🍺 </p>
+        </header>
       
       <Switch> 
         <Route exact path='/signup' render={({ history }) =>   
@@ -53,7 +57,7 @@ render() {
           handleSignupOrLogin={this.handleSignupOrLogin}
           />
         }/>
-      <Route exact path='/' render={() => 
+      {/* <Route exact path='/' render={() => 
       <HomePage
         />
       }/>
@@ -62,7 +66,7 @@ render() {
         <HomePage /> 
           :
         <Redirect to='/login' />
-      }/>
+      }/> */}
 
       </Switch>
       </div>

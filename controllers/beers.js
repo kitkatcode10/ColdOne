@@ -1,21 +1,23 @@
-var Beer = require('..models/beer'); 
+var Beer = require('../models/beer'); 
+// const ObjectId = require("mongodb").ObjectId; 
 
-module.exports = {
-    create, 
-    mBbeers, 
-}; 
-
-async function create(req, res) {
-    try {
-        await Beer.create(req.body); 
-        beers(req, res); 
-    } catch (err) {
-        res.json({err}); 
-    }
+async function create(req, res, next) {
+    // req.body.list = 'beers'; 
+    // const beer = new Beer(req.body); {
+    // try {
+    //     await beer.save();  
+    // } catch (err) {
+    //     res.json({err}); 
+    // }
 }
 
 async function myBeers(req, res) {
-    const scores = await Beer.find({})
+    const beers = await Beer.find({})
     .sort()
     res.json(beers); 
 }
+
+module.exports = {
+    create, 
+    myBeers, 
+}; 
