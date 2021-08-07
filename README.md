@@ -3,7 +3,7 @@
 You ever drink a brewski and was like wow I love this, I hope I never forget it! Well now you'll <strong> never </strong> forget. 
 A Cold One is where you can keep track and find all your favourite brews, whether they're from the coolest micro brewery dig in town or budweiser. We'll help you find the right brew at the right place, for the right taste. 
 
-~Placeholder for screenshots! ~
+Placeholder for screenshots! 
 
 ---
 ### Technologies Used
@@ -23,7 +23,7 @@ A Cold One is where you can keep track and find all your favourite brews, whethe
 ---
 ### Getting Started
 
-~placeholder for heroku deployed link~ 
+placeholder for heroku deployed link
 
 ---
 
@@ -31,7 +31,7 @@ A Cold One is where you can keep track and find all your favourite brews, whethe
 
 [trello board](https://trello.com/b/FEwLtKUd/acold1)
 
-~placeholder for figma wireframes~ 
+placeholder for figma wireframes
 
 ---
 
